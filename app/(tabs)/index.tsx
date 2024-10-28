@@ -1,70 +1,31 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import WebView from 'react-native-webview';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const wed = 'http://10.86.6.44:4200/gift-list/?accessToken=eyJhbGciOiJSUzI1NiIsImtpZCI6IjgyNkJCRDM2MzMzREI0OTk3REZDOTE5M0YyODhBM0U0QzExNEM0MUMiLCJ4NXQiOiJnbXU5TmpNOXRKbDlfSkdUOG9pajVNRVV4QnciLCJ0eXAiOiJhdCtqd3QifQ.eyJzdWIiOiIzYTExZjM2Yy1lNWQ0LTk4ZDItMWE3ZS00YmE2YzRmMTQ1ZTgiLCJ1c2VyX2lkIjoiNzU3NSIsImltZWkiOiIyQ0E3OTcxQy0wMUY5LTU1QjYtQTQ4My01MEE0NEFCREZFQTAiLCJ0ZW5hbnRpZCI6IjNhMTE5NTQ3LWI1YjktZTA3Zi00NTM1LTcyZWUxMDBlZWRkNyIsInVuaXF1ZV9uYW1lIjoiMDM3NjgzMTY1OCIsImVkaXRpb25pZCI6IjNhMTE5NTQyLTQ4ZDItYTkwOS01MmIyLTE2MjA2NGU0YTI4OCIsInByZWZlcnJlZF91c2VybmFtZSI6IjAzNzY4MzE2NTgiLCJyb2xlIjoiTW9iaWxlQXBwIiwiZW1haWwiOiIwMzc2ODMxNjU4QGJvbmJvbnNob3Audm4iLCJlbWFpbF92ZXJpZmllZCI6IkZhbHNlIiwicGhvbmVfbnVtYmVyX3ZlcmlmaWVkIjoiRmFsc2UiLCJvaV9wcnN0IjoiQkJTTW9iaWxlQXBwU2VydmljZV9Nb2JpbGUiLCJvaV9hdV9pZCI6IjNhMTU5YzQ5LWY2NTctMGJjZC1kNjI3LTE1ZjJjZTVkMmE5YiIsImNsaWVudF9pZCI6IkJCU01vYmlsZUFwcFNlcnZpY2VfTW9iaWxlIiwib2lfdGtuX2lkIjoiM2ExNTljNDktZjczZC1iOTg4LTIxMjItZjU0ZGFhN2QyM2Y5IiwiYXVkIjoiQm9uYm9uU2hvcCIsInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgQm9uYm9uU2hvcCBvZmZsaW5lX2FjY2VzcyIsImp0aSI6IjljM2MzMzM2LTE3M2YtNGFmYS04ZmMyLWM4ODkxZjBiMDdjNSIsImlzcyI6Imh0dHBzOi8vYXV0aC1tb2JpbGUucWMuYm9uYm9uc2hvcC52bi8iLCJleHAiOjE3MzE1MjM3NjAsImlhdCI6MTcyODg5NDAxN30.NA11lPWv7VP2ZeEsYecEvaSDddy3xgNONG0VlE1fuqTUQKkKfPwLNG5twjzGJ0j4cQsuVTZ_gOZGPVtXpqIzGi_hBFKZvB1gcYp7Q2z7w22d3mi-8gMw6zShKJhvC2-X9GU0vxBxW6WaS1j6t6JBqvHU42TbMW8lwqt5BE4XvjyKlfDzT9vLlJBGVJwpFUL397zCRBTsGasUK2HgsR7oRncHflicsVCjmSKwKWBQTTH0RhFkFKJxnyBvnosVjKWyy4TafUsWDYYkJTRuZeHRRLhMHzwVpSrANfR7G_bloarpkkP_DDONL_rrF7K0d4ev4W1HjnsWvw1UxaJRveTE0Q'
+
+const INJECTED_JAVASCRIPT = `(function() {
+  window.ReactNativeWebView.postMessage(JSON.stringify(window.location));
+})();`;
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+    <WebView
+      style={styles.container}
+      source={{ uri: wed }}
+      
+    /> 
+  )
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff', // Change to your preferred background color
+    },  
+    title: {
+        fontSize: 24, // Change to your preferred font size
+        fontWeight: 'bold', // Change to your preferred font weight
+    },
 });
